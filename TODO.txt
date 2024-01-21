@@ -1,0 +1,25 @@
+1. Cadastro de usuário
+    - POST
+    - GET (all e id)
+    - PUT
+    - DELETE
+
+2. Produtos 
+    - POST
+    - GET
+        - All
+        - id
+        - Query 
+            - filtrar os produtos de acordo com a categoria e/ou id do usuario
+        - Download da imagem do produto
+    - PUT
+    - DELETE
+
+3. Autenticação/Login do usuário
+    - Deve receber o email e a senha.
+    - Deve retornar o token do usuario para ele conseguir acessar as outras rotas.
+
+4. Middleware de autorização
+5. Middleware de logs
+
+6. Conectar com Banco de Dados (opcional)

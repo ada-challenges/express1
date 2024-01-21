@@ -43,5 +43,9 @@ git push
 
 Webapp
 > Runtime: node  
-> Build Command: yarn  
-> Start Command: node /src/server.js
+> Build Command: npm ci && npm run build  
+> Start Command: npm run start
+
+8. Acessar:
+https://express1-fbd3.onrender.com/usuarios
+http://localhost:3000
