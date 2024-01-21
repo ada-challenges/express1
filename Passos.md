@@ -26,8 +26,8 @@ routes\usuarios.js
 ````
   "scripts": {
     "build": "yarn",
-    "start": "node /src/server.js",
-    "dev": "nodemon /src/server.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 ````
