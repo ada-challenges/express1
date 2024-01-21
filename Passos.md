@@ -24,12 +24,12 @@ routes\usuarios.js
 5. Modifiquei o ponto de entrada na aplicação e adicionei nodemon nos scripts:
 
 ````
-   "version": "1.0.0",
-=> "main": "./src/main.js",
-   "scripts": {
-=>   "dev": "nodemon ./main.js",
-     "test": "echo \"Error: no test specified\" && exit 1"
-   },
+  "scripts": {
+    "build": "yarn",
+    "start": "node /src/server.js",
+    "dev": "nodemon /src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
 ````
 
 6. Subi as modificações para o github:
@@ -38,3 +38,10 @@ git add .
 git commit -m "Boilerplate inicial"
 git push
 ````
+
+7. Fiz o deploy no render:
+
+Webapp
+> Runtime: node  
+> Build Command: yarn  
+> Start Command: node /src/server.js
