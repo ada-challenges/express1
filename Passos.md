@@ -8,7 +8,8 @@ git clone https://github.com/ada-challenges/express1.git
 
 3. Instalei as dependencias com:
 ```` 
-npm install express nodemon
+npm install express yarn
+npm install nodemon --save-dev
 npm init -y
 ````
 
