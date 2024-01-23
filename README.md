@@ -2,12 +2,12 @@
 
 Alunos:
 Marcelo Mesquita dos Santos
-Allexandre [INSERIR NOME COMPLETO]
+Allexandre Cardoso Pereira
 
 Trabalho de conclusão de Módulo na ADA/Ifood Backend.
 
 Este projeto utiliza node.js e o framework express.
-Como banco de dados decidimos utilizar MySQL
+Como banco de dados decidimos utilizar PostgreSQL
 
 Aplicação criada em colaboração via github, utilizando code review e merge.
 
