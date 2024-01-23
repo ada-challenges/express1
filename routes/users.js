@@ -1,16 +1,17 @@
 // routes/users.js
 
 const express = require("express");
+const UserController = require("../src/controllers/UserController");
 const router = express.Router();
+
+const userController = new UserController()
  
 router.post("/", (req, res) => {
   const user = req.body;
   res.send(`Rota para criar um usuário.`);
 });
 
-router.get("/", (req, res) => {
-  res.send(`Rota para retornar todos os usuários (paginados pelo query)`);
-});
+router.get("/", userController.getAllUsers);
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;

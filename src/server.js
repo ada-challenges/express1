@@ -2,13 +2,14 @@
 
 const express = require("express");
 const app = require("express")()
+require('dotenv').config();
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 
-const { authenticate, authorizate } = require("../middlewares/auth");
-app.use(authenticate)
-app.use(authorizate)
+// const { authenticate, authorizate } = require("../middlewares/auth");
+// app.use(authenticate)
+// app.use(authorizate)
 
 const users = require("../routes/users")
 app.use('/users', users)
