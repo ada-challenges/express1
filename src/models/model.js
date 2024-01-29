@@ -15,7 +15,7 @@ class Model {
 
     async select(fields = '*', whereClause = '') {
         try {
-            await this.connect();
+            // await this.connect();
 
             let query;
             let values;
@@ -37,36 +37,35 @@ class Model {
         } catch (err) {
             console.error('ERRO', err);
         } finally {
-            await this.disconnect();
+            // await this.disconnect();
         }
     }
 
     async insert(data) {
         try {
-            await this.connect();
+            // await this.connect();
 
             const columns = Object.keys(data).join(', ');
             const values = Object.values(data);
             const placeholders = values.map((value, index) => `$${index + 1}`).join(', ');
 
-            const query = `INSERT INTO ${this.table} (${columns}) VALUES (${placeholders})`;
-
+            const query = `INSERT INTO ${this.table} (${columns}) VALUES (${placeholders}) RETURNING *`;
+            
             const result = await this.connection.client.query(query, values);
             return result;
 
         } catch (err) {
             console.error('ERRO:', err);
         } finally {
-            await this.disconnect();
+            // await this.disconnect();
         }
     }
 
     async delete(whereClause = '') {
         try {
-            await this.connect();
+            // await this.connect();
 
             let query;
-
             if (whereClause) {
                 query = `DELETE FROM ${this.table} WHERE ${whereClause}`;
             } else {
@@ -80,13 +79,13 @@ class Model {
         } catch (err) {
             console.error('ERRO', err);
         } finally {
-            await this.disconnect();
+            // await this.disconnect();
         }
     }
 
     async update(data, whereClause = '') {
         try {
-            await this.connect();
+            // await this.connect();
 
             const columns = Object.keys(data).join(', ');
             const values = Object.values(data);
@@ -109,7 +108,7 @@ class Model {
         } catch (err) {
             console.error('ERRO', err);
         } finally {
-            await this.disconnect();
+            // await this.disconnect();
         }
     }
 }
