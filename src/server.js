@@ -1,24 +1,39 @@
-//src/server.js
-
+const cookieParser = require('cookie-parser');
 const express = require("express");
-const app = require("express")()
+const app = require("express")();
+
+// routes
+const usersRoutes = require("../routes/users");
+const productsRoutes = require("../routes/products");
+const authRoutes = require("../routes/auth");
+
+// middlewares
+const { authenticate } = require("../middlewares/auth");
+const logRequests = require('../middlewares/logs');
+
+// variáveis de ambiente
 require('dotenv').config();
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true}))
+// express configs
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const { authenticate, authorizate } = require("../middlewares/auth");
-app.use(authenticate)
-app.use(authorizate)
+// routes no authenticate
+// -> /auth/register
+// -> /auth/login
+// -> /products [getAll]
+// -> /products [downloadImage]
 
-const users = require("../routes/users")
-app.use('/users', users)
+app.use(logRequests); // Request Logs Middleware
 
-const PORT = 3000
-app.listen(PORT, (error) =>{ 
-    if(!error) 
-        console.log(`Server running at http://localhost:${PORT}/`) 
-    else 
-        console.log("Error occurred, server can't start", error); 
-    } 
-)
+app.use('/auth', authRoutes);
+
+app.use('/users', authenticate, usersRoutes);
+app.use('/products', productsRoutes);
+
+app.listen(process.env.PORT_SERVER ?? 3000, (error) => {
+  !error
+    ? console.log(`Server rodando na porta http://localhost:${process.env.PORT_SERVER ?? 3000}/`)
+    : console.log("Erro ao iniciar o servidor: ", error);
+});
