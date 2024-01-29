@@ -1,12 +1,8 @@
 const { Client } = require('pg');
 
 class Connection {
-  static instance;
 
   constructor() {
-    if (Connection.instance) {
-      return Connection.instance;
-    }
 
     this.client = new Client({
       user: process.env.POSTGRE_USER,
@@ -17,13 +13,12 @@ class Connection {
       ssl: process.env.POSTGRE_SSL,
     });
 
-    Connection.instance = this;
   }
 
   async connect() {
     try {
       await this.client.connect();
-      console.log('Conexão estabelecida');
+      console.log('[Conexão estabelecida]');
     } catch (err) {
       console.error('Erro de conexão:', err);
     }
@@ -32,7 +27,7 @@ class Connection {
   async disconnect() {
     try {
       await this.client.end();
-      console.log('Conexão encerrada');
+      console.log('[Conexão encerrada]');
     } catch (err) {
       console.error('Erro ao encerrar a conexão:', err);
     }
