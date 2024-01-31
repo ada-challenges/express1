@@ -81,6 +81,7 @@ class ProductController {
         try {
             const product = new Product();
             await product.connect()
+            console.log(req.body);
             const result = await product.update(data, `id = ${id}`);
             await product.disconnect();
             res.status(200).json({ message: 'Produto alterado com sucesso' });
@@ -113,9 +114,6 @@ class ProductController {
             res.status(200).json({ message: 'Produto deletado com sucesso' });
         } catch (error) {
             console.error('Erro:', error);
-            if (product) {
-                await product.disconnect();
-            }
             res.status(500).json({ message: 'Erro ao deletar o produto' });
         }
     }

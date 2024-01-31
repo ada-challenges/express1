@@ -30,7 +30,7 @@ app.use(logRequests); // Request Logs Middleware
 app.use('/auth', authRoutes);
 
 app.use('/users', authenticate, usersRoutes);
-app.use('/products', productsRoutes);
+app.use('/products', authenticate, productsRoutes);
 
 app.listen(process.env.PORT_SERVER ?? 3000, (error) => {
   !error

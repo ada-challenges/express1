@@ -36,9 +36,7 @@ class Model {
 
         } catch (err) {
             console.error('ERRO', err);
-        } finally {
-            // await this.disconnect();
-        }
+        } 
     }
 
     async insert(data) {
@@ -56,9 +54,7 @@ class Model {
 
         } catch (err) {
             console.error('ERRO:', err);
-        } finally {
-            // await this.disconnect();
-        }
+        } 
     }
 
     async delete(whereClause = '') {
@@ -78,25 +74,21 @@ class Model {
 
         } catch (err) {
             console.error('ERRO', err);
-        } finally {
-            // await this.disconnect();
-        }
+        } 
     }
 
     async update(data, whereClause = '') {
         try {
             // await this.connect();
 
-            const columns = Object.keys(data).join(', ');
+            const columns = Object.keys(data);
             const values = Object.values(data);
-            const placeholders = values.map((value, index) => `$${index + 1}`).join(', ');
+            const placeholders = values.map((value, index) => `${columns[index]} = $${index + 1}`).join(', ');
 
             let query;
 
-            //Verificar se o objeto tem mais de uma propriedade
-            // JSON.stringify(data).length
             if (whereClause) {
-                query = `UPDATE ${this.table} SET ${columns} = ${placeholders} WHERE ${whereClause}`;
+                query = `UPDATE ${this.table} SET ${placeholders} WHERE ${whereClause}`;
             } else {
                 console.error('Erro: Deve fornecer uma cláusula WHERE para a função update.');
                 return;
@@ -107,9 +99,7 @@ class Model {
 
         } catch (err) {
             console.error('ERRO', err);
-        } finally {
-            // await this.disconnect();
-        }
+        } 
     }
 }
 

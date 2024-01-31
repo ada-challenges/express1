@@ -2,7 +2,6 @@
 
 const express = require("express");
 const ProductController = require("../src/controllers/ProductController");
-const { authenticate } = require("../middlewares/auth");
 const  upload  = require("../src/filesystem/filesystem");
 
 const router = express.Router();
@@ -13,12 +12,12 @@ router.post("/", upload.single('file'), productController.createProduct);
 
 router.get("/", productController.getAllProducts);
 
-router.get("/:id", authenticate, productController.getProductById);
+// router.get("/:id", productController.getProductById);
 
-router.get("/:category/:id?", authenticate, productController.getProductByQuery);
+router.get("/:category/:id?", productController.getProductByQuery);
 
-router.put("/:id", authenticate, productController.updateProduct);
+router.put("/:id", productController.updateProduct);
 
-router.delete("/:id", authenticate, productController.deleteProduct);
+router.delete("/:id", productController.deleteProduct);
 
 module.exports = router;
